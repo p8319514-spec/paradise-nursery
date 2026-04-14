@@ -8,17 +8,18 @@ const products = [
 
 function ProductList() {
   const handleAddToCart = (product) => {
-    console.log("Added to cart:", product);
+    alert(`${product.name} added to cart`);
   };
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <h2>Plant Products</h2>
 
       {products.map((product) => (
-        <div key={product.id} style={{ marginBottom: "10px" }}>
+        <div key={product.id} style={{ margin: "10px", padding: "10px", border: "1px solid gray" }}>
           <h3>{product.name}</h3>
           <p>Price: ${product.price}</p>
+
           <button onClick={() => handleAddToCart(product)}>
             Add to Cart
           </button>

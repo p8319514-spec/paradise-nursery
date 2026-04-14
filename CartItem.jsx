@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
-import { CartContext } from "./CartContext";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItem, updateQuantity } from "./redux/cartSlice";
 
 function CartItem() {
-  const { cart, removeFromCart, updateQty } = useContext(CartContext);
+  const cart = useSelector(state => state.cart.items);
+  const dispatch = useDispatch();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -11,24 +13,35 @@ function CartItem() {
       <h2>Cart</h2>
 
       {cart.map(item => (
-        <div key={item.id} style={{ margin: "10px" }}>
-          <h3>{item.name}</h3>
-          <p>${item.price}</p>
+        <div key={item.id}>
+          <h4>{item.name}</h4>
 
-          <input
-            type="number"
-            value={item.quantity}
-            min="1"
-            onChange={(e) => updateQty(item.id, Number(e.target.value))}
-          />
+          <button onClick={() =>
+            dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))
+          }>
+            -
+          </button>
 
-          <button onClick={() => removeFromCart(item.id)}>
+          {item.quantity}
+
+          <button onClick={() =>
+            dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }))
+          }>
+            +
+          </button>
+
+          <button onClick={() => dispatch(removeItem(item.id))}>
             Remove
           </button>
         </div>
       ))}
 
       <h3>Total: ${total}</h3>
+
+      <button>Checkout</button>
+      <button onClick={() => window.location.reload()}>
+        Continue Shopping
+      </button>
     </div>
   );
 }

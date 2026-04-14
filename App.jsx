@@ -1,23 +1,30 @@
 import React from "react";
+import ProductList from "./ProductList";
+import CartItem from "./CartItem";
 
 function App() {
   return (
-    <div style={{ textAlign: "center", padding: "50px" }}>
-      <h1>🌿 Paradise Nursery</h1>
-      <p>Your one-stop shop for beautiful indoor plants</p>
+    <div>
+      <header style={{ textAlign: "center", padding: "20px" }}>
+        <h1>🌿 Paradise Nursery</h1>
+        <p>Welcome to your plant shopping store</p>
+        <button
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "green",
+            color: "white",
+            border: "none",
+            borderRadius: "5px"
+          }}
+        >
+          Get Started
+        </button>
+      </header>
 
-      <button
-        style={{
-          padding: "10px 20px",
-          fontSize: "16px",
-          backgroundColor: "green",
-          color: "white",
-          border: "none",
-          borderRadius: "5px"
-        }}
-      >
-        Get Started
-      </button>
+      <hr />
+
+      <ProductList />
+      <CartItem />
     </div>
   );
 }

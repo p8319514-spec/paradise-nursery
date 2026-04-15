@@ -1,2 +1,3 @@
-# paradise-nursery
-Paradise Nursery plant shop React project with product listing and cart functionality
+# e-plantShopping
+
+Paradise Nursery is an online plant shopping application where users can browse plants and add them to a cart.
